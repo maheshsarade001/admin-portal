@@ -1,8 +1,8 @@
 # Admin Portal
 
-![ss]('./public/assets/screenshot1.png')
+![ss](./public/assets/screenshot1.png)
 
-![ss]('./public/assets/screenshot2.png')
+![ss](./public/assets/screenshot2.png)
 
 ## Features
 
