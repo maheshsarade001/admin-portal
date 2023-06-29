@@ -89,6 +89,10 @@ const AddUser = () => {
                 value: 10,
                 message: "Please enter a vaild phone Number",
               },
+              maxLength: {
+                value: 15,
+                message: "Please enter a vaild phone Number",
+              },
               pattern: {
                 value: /^[0-9]*$/,
                 message: "Please enter a vaild phone Number",
@@ -109,7 +113,7 @@ const AddUser = () => {
                 message: "Please enter a vaild age",
               },
               maxLength: {
-                value: 3,
+                value: 2,
                 message: "Please enter a vaild a age",
               },
             })}
