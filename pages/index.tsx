@@ -8,6 +8,7 @@ import {
   PencilSquareIcon,
   TrashIcon,
   PlusCircleIcon,
+  MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
 import Button from "../components/core/Button";
 import AddUser from "../components/AddUser";
@@ -15,12 +16,16 @@ import useDialogStore from "../store/dialog";
 import toast from "react-hot-toast";
 import EditUser from "../components/EditUser";
 import WarningMsg from "../components/core/WarningMsg";
+import Input from "../components/core/Input";
+import { log } from "console";
 const Home = () => {
   const [activeUser, setActiveUser] = useState<string>("");
   const { setAddUserOpen, setEditUserOpen, isEditUserOpen, setWarningOpen } =
     useDialogStore();
   const { setAllUser, users } = useUserStore();
   const [loading, setLoading] = useState<boolean>(false);
+  const [filteredUser, setFilteredUser] = useState(users);
+
   useEffect(() => {
     setLoading(true);
     getAllUser();
@@ -30,7 +35,7 @@ const Home = () => {
   const getAllUser = () => {
     getAllUserApi()
       .then((response) => {
-        console.log(response.data.data);
+        console.log(response.data.data, "ok");
         setLoading(false);
 
         setAllUser(response.data.data);
@@ -47,6 +52,9 @@ const Home = () => {
       getAllUser();
     });
   };
+
+  const searchUser = () => {};
+
   return (
     <Base>
       <div className="p-5 ">
@@ -59,16 +67,28 @@ const Home = () => {
           title="Are You Sure ?"
           msg="Are you sure you want to delete the user"
         />
-        <Button
-          className="flex w-auto ml-auto mb-5 mr-5"
-          onClick={() => {
-            setAddUserOpen(true);
-          }}
-        >
-          {" "}
-          <PlusCircleIcon className="w-6 mr-2" />
-          Add User
-        </Button>
+        <div className="flex items-center justify-between my-2">
+          <div className="w-1/3 flex items-center  rounded-md border-2 border-[#334154]">
+            <MagnifyingGlassIcon className="w-6 ml-2" />
+            <Input
+              type="text"
+              label="Search"
+              name="Search"
+              className="border-none"
+              onChange={searchUser}
+            />
+          </div>
+          <Button
+            className="flex w-auto "
+            onClick={() => {
+              setAddUserOpen(true);
+            }}
+          >
+            {" "}
+            <PlusCircleIcon className="w-6 mr-2" />
+            Add User
+          </Button>
+        </div>
         <div className=" overflow-x-auto relative shadow-md sm:rounded-lg">
           <table className=" w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 capitalize bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
