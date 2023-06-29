@@ -31,6 +31,9 @@ const Home = () => {
     getAllUser();
   }, []);
 
+  useEffect(() => {
+    setFilteredUser(users);
+  }, [users]);
   // get All User
   const getAllUser = () => {
     getAllUserApi()
@@ -53,7 +56,14 @@ const Home = () => {
     });
   };
 
-  const searchUser = () => {};
+  const searchUser = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+
+    const temp = users.filter((usr) =>
+      usr.firstName.toLowerCase().startsWith(value.toLowerCase())
+    );
+    setFilteredUser(temp);
+  };
 
   return (
     <Base>
@@ -120,7 +130,7 @@ const Home = () => {
                   </td>
                 </tr>
               ) : (
-                users.map((data: User) => (
+                filteredUser.map((data: User) => (
                   <tr
                     key={data._id}
                     className="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
