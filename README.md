@@ -4,6 +4,8 @@
 
 ![ss](./public/assets/screenshot2.png)
 
+### [Demo Link](https://admin-portal-tawny.vercel.app/)
+
 ## Features
 
 1. Admin portal with all CRUD functionality.
