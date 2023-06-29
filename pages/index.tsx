@@ -123,7 +123,7 @@ const Home = () => {
             <tbody>
               {loading ? (
                 <TableLoading colLength={5} />
-              ) : users.length == 0 ? (
+              ) : filteredUser.length == 0 ? (
                 <tr>
                   <td className="text-center py-6 px-2" colSpan={5}>
                     No User Found
